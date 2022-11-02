@@ -1,10 +1,12 @@
 {
   "name": "writeup",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tech blog",
   "main": "application.js",
   "scripts": {
-    "css": "postcss tailwind ./public/vendor/tailwind.css -o ./public/dist/css/global.css -w --verbose"
+    "css": "postcss tailwind ./public/vendor/tailwind.css -o ./public/dist/css/global.css -w --verbose",
+    "test": "nodemon application.js",
+    "start": "node application.js"
   },
   "keywords": [
     "writeup",
