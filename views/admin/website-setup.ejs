@@ -3,6 +3,7 @@
   <head>
     <%- include('partials/head'); -%>
   </head>
+
   <body class="vertical light">
     <main class="wrapper vh-100">
       <div class="container-fluid">
@@ -13,27 +14,62 @@
                 class="navbar-brand flex-fill mx-auto mt-2 text-center"
                 href="#">
                 <svg
-                  version="1.1"
-                  id="logo"
-                  class="navbar-brand-img brand-md"
                   xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 120 120"
-                  xml:space="preserve">
-                  <g>
-                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                  </g>
+                  width="64"
+                  height="64"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-settings brand-md">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path
+                    d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
                 </svg>
               </a>
-              <h2 class="my-3">Add a New Admin</h2>
+              <h2 class="my-3">Setup Your Website</h2>
             </div>
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
               <div class="form-group">
-                <label for="adminEmail">Email</label>
+                <label for="websiteTitle">Website Title</label>
+                <input
+                  type="name"
+                  name="websiteTitle"
+                  class="form-control"
+                  id="websiteTitle"
+                  required />
+              </div>
+              <div class="form-group">
+                <label for="websiteDescription">Description</label>
+                <textarea
+                  type="text"
+                  name="websiteDescription"
+                  class="form-control"
+                  id="websiteDescription"
+                  rows="2"
+                  required></textarea>
+              </div>
+              <div class="form-group">
+                <label for="websiteLogo"
+                  >Website Logo ( Recommended size 700X350 pixel )</label
+                >
+                <div class="custom-file">
+                  <input
+                    type="file"
+                    class="custom-file-input"
+                    id="websiteLogo"
+                    name="websiteLogo"
+                    accept="image/*" />
+                  <label class="custom-file-label" for="websiteLogo"
+                    >Choose file</label
+                  >
+                </div>
+              </div>
+              <hr class="my-4" />
+              <div class="form-group">
+                <label for="adminEmail">Admin Email</label>
                 <input
                   type="email"
                   name="adminEmail"
@@ -42,7 +78,7 @@
                   required />
               </div>
               <div class="form-group">
-                <label for="adminUsername">Username</label>
+                <label for="adminUsername">Admin Username</label>
                 <input
                   type="text"
                   name="adminUsername"
@@ -52,7 +88,7 @@
               </div>
               <div class="form-row">
                 <div class="form-group col-md-6">
-                  <label for="adminFirstName">Firstname</label>
+                  <label for="adminFirstName">Admin Firstname</label>
                   <input
                     type="text"
                     name="adminFirstName"
@@ -61,7 +97,7 @@
                     required />
                 </div>
                 <div class="form-group col-md-6">
-                  <label for="adminLastName">Lastname</label>
+                  <label for="adminLastName">Admin Lastname</label>
                   <input
                     type="text"
                     name="adminLastName"
@@ -71,7 +107,7 @@
                 </div>
               </div>
               <div class="form-group">
-                <label for="adminBio">Bio</label>
+                <label for="adminBio">Admin Bio</label>
                 <textarea
                   type="text"
                   name="adminBio"
@@ -118,7 +154,7 @@
               <input
                 class="btn btn-lg btn-primary btn-block"
                 type="submit"
-                value="Add Admin" />
+                value="Get started" />
             </form>
             <p class="text-muted mt-5 mb-3 text-center">
               ©
@@ -132,6 +168,7 @@
       </div>
     </main>
     <!-- .wrapper -->
+
     <%- include('partials/script'); -%> <% if(typeof message !== 'undefined'){
     %>
     <script>
