@@ -1,5 +1,7 @@
 const websiteSetting = require("../models/websiteSettingsModel");
 const adminUser = require("../models/adminUserModel");
+const postAdd = require("../models/postModel");
+// const pos
 const bcrypt = require("bcrypt");
 const hashSalt = 12;
 
@@ -93,8 +95,8 @@ const registerSave = async (req, res) => {
     const adminConfirmPass = req.body.adminConfirmPass;
 
     if (adminPass != adminConfirmPass) {
-      res.render("admin/login", {
-        title: "Login",
+      res.render("admin/register", {
+        title: "Register",
         statusColor: "#ef4444",
         message: "Password did not match !!!",
       });
@@ -105,28 +107,49 @@ const registerSave = async (req, res) => {
       const AdminLastName = req.body.adminLastName;
       const adminFullName = adminFirstName + " " + AdminLastName;
       const adminBio = req.body.adminBio;
-      const Password = await securePassword(req.body.AdminPass);
+      const hashPassword = await securePassword(req.body.adminPass);
 
       //   Save admin user setting in mongodb
-      const userDetails = new adminUser({
-        email: adminEmail,
-        userName: adminUsername,
-        fullName: adminFullName,
-        bio: adminBio,
-        hashPassword: Password,
-        isSuperAdmin: 0,
-        isAdmin: 1,
-      });
-      const userData = await userDetails.save();
+      const adminEmailFind = await adminUser.findOne({ email: adminEmail });
 
-      if (userData) {
-        res.redirect("/admin/all-admin");
-      } else {
+      if (adminEmailFind) {
         res.render("admin/register", {
           title: "Register",
           statusColor: "#ef4444",
-          message: "Internal server error !!!",
+          message: "Email already exists as Admin !! Please Log in.",
         });
+      } else {
+        const adminUsernameFind = await adminUser.findOne({
+          userName: adminUsername,
+        });
+        if (adminUsernameFind) {
+          res.render("admin/register", {
+            title: "Register",
+            statusColor: "#ef4444",
+            message: "Username already exists !!!",
+          });
+        } else {
+          const userDetails = new adminUser({
+            email: adminEmail,
+            userName: adminUsername,
+            fullName: adminFullName,
+            bio: adminBio,
+            password: hashPassword,
+            isSuperAdmin: 0,
+            isAdmin: 1,
+          });
+          const userData = await userDetails.save();
+
+          if (userData) {
+            res.redirect("/admin/all-admin");
+          } else {
+            res.render("admin/register", {
+              title: "Register",
+              statusColor: "#ef4444",
+              message: "Internal server error !!!",
+            });
+          }
+        }
       }
     }
   } catch (error) {
@@ -152,12 +175,16 @@ const loginSave = async (req, res) => {
 
       if (adminPassMatch) {
         req.session.user_id = adminEmailFind._id;
+        req.session.name = adminEmailFind.fullName;
         req.session.isSuperAdmin = adminEmailFind.isSuperAdmin;
         req.session.isAdmin = adminEmailFind.isAdmin;
 
         if (adminEmailFind.isSuperAdmin == 1) {
           res.redirect("/admin/dashboard");
-        } else if (adminEmailFind.isSuperAdmin == 0 && userData.isAdmin == 1) {
+        } else if (
+          adminEmailFind.isSuperAdmin == 0 &&
+          adminEmailFind.isAdmin == 1
+        ) {
           res.redirect("/admin/dashboard");
         } else {
           res.render("admin/login", {
@@ -173,6 +200,7 @@ const loginSave = async (req, res) => {
           message: "Email or Password does not match !!!",
         });
       }
+      return req.session.name;
     } else {
       res.render("admin/login", {
         title: "Login",
@@ -190,7 +218,54 @@ const dashboard = async (req, res) => {
 };
 
 const allAdmin = async (req, res) => {
-  res.render("admin/all-admin", { title: "Admins" });
+  try {
+    const admins = await adminUser.find({});
+    res.render("admin/all-admin", { title: "Admins", admins: admins });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+const addPost = async (req, res) => {
+  res.render("admin/add-post", { title: "Add Post" });
+};
+const addPostSave = async (req, res) => {
+  const authorName = req.session.name;
+  try {
+    console.log("1");
+    const titlePost = req.body.postTitle;
+    const excerptPost = req.body.postExcerpt;
+    const featuredImage = req.file.filename;
+    const contentPost = req.body.postContent;
+    const authorPost = authorName;
+
+    console.log({
+      titlePost,
+      excerptPost,
+      featuredImage,
+      contentPost,
+      authorPost,
+    });
+
+    // const titleFind = await postAdd.findOne({ title: titlePost });
+    // if (!titleFind) {
+    // const postDetails = new postAdd({
+    //   title: titlePost,
+    //   featuredImage: titlePost,
+    //   excerpt: titlePost,
+    //   title: titlePost,
+    //   content: titlePost,
+    //   author: authorPost,
+    // });
+    // const postData = await postDetails.save();
+    // if (postData) {
+    //   res.redirect("/admin/all-post");
+    // }
+    // slug:
+    // }
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 const allPost = async (req, res) => {
@@ -219,6 +294,8 @@ module.exports = {
   loginSave,
   dashboard,
   allAdmin,
+  addPost,
+  addPostSave,
   allPost,
   logOut,
   error404,

@@ -4,133 +4,109 @@
     <%- include('partials/head'); -%>
   </head>
   <body class="vertical light">
-    <main class="wrapper vh-100">
-      <div class="container-fluid">
-        <div class="row align-items-center h-100">
-          <div class="col-lg-6 col-md-8 col-10 mx-auto">
-            <div class="mx-auto my-4 text-center">
-              <a
-                class="navbar-brand flex-fill mx-auto mt-2 text-center"
-                href="#">
-                <svg
-                  version="1.1"
-                  id="logo"
-                  class="navbar-brand-img brand-md"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 120 120"
-                  xml:space="preserve">
-                  <g>
-                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                  </g>
-                </svg>
-              </a>
-              <h2 class="my-3">Add a New Admin</h2>
+    <div class="wrapper">
+      <%- include('partials/navbar'); -%> <%- include('partials/aside'); -%>
+      <main role="main" class="main-content">
+        <div class="container-fluid">
+          <div class="row align-items-center h-100">
+            <div class="col-lg-8 col-md-9 col-11 mx-auto">
+              <div class="mx-auto my-4 text-center">
+                <h2 class="my-3">Add a New Admin</h2>
+              </div>
+              <form action="" method="post">
+                <div class="form-group">
+                  <label for="adminEmail">Email</label>
+                  <input
+                    type="email"
+                    name="adminEmail"
+                    class="form-control"
+                    id="adminEmail"
+                    required />
+                </div>
+                <div class="form-group">
+                  <label for="adminUsername">Username</label>
+                  <input
+                    type="text"
+                    name="adminUsername"
+                    class="form-control"
+                    id="adminUsername"
+                    required />
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="adminFirstName">Firstname</label>
+                    <input
+                      type="text"
+                      name="adminFirstName"
+                      id="adminFirstName"
+                      class="form-control"
+                      required />
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="adminLastName">Lastname</label>
+                    <input
+                      type="text"
+                      name="adminLastName"
+                      id="adminLastName"
+                      class="form-control"
+                      required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="adminBio">Bio</label>
+                  <textarea
+                    type="text"
+                    name="adminBio"
+                    class="form-control"
+                    id="adminBio"
+                    rows="4"></textarea>
+                </div>
+                <hr class="my-4" />
+                <div class="row mb-4">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="adminPass">New Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="adminPass"
+                        name="adminPass"
+                        required />
+                    </div>
+                    <div class="form-group">
+                      <label for="adminConfirmPass">Confirm Password</label>
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="adminConfirmPass"
+                        name="adminConfirmPass"
+                        required />
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <p class="mb-2">Password requirements</p>
+                    <p class="small text-muted mb-2">
+                      To create a new password, you have to meet all of the
+                      following requirements:
+                    </p>
+                    <ul class="small text-muted pl-4 mb-0">
+                      <li>Minimum 8 character</li>
+                      <li>At least one special character</li>
+                      <li>At least one number</li>
+                      <li>Can’t be the same as a previous password</li>
+                    </ul>
+                  </div>
+                </div>
+                <input
+                  class="btn btn-lg btn-primary btn-block"
+                  type="submit"
+                  value="Add Admin" />
+              </form>
             </div>
-            <form action="" method="post">
-              <div class="form-group">
-                <label for="adminEmail">Email</label>
-                <input
-                  type="email"
-                  name="adminEmail"
-                  class="form-control"
-                  id="adminEmail"
-                  required />
-              </div>
-              <div class="form-group">
-                <label for="adminUsername">Username</label>
-                <input
-                  type="text"
-                  name="adminUsername"
-                  class="form-control"
-                  id="adminUsername"
-                  required />
-              </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="adminFirstName">Firstname</label>
-                  <input
-                    type="text"
-                    name="adminFirstName"
-                    id="adminFirstName"
-                    class="form-control"
-                    required />
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="adminLastName">Lastname</label>
-                  <input
-                    type="text"
-                    name="adminLastName"
-                    id="adminLastName"
-                    class="form-control"
-                    required />
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="adminBio">Bio</label>
-                <textarea
-                  type="text"
-                  name="adminBio"
-                  class="form-control"
-                  id="adminBio"
-                  rows="4"></textarea>
-              </div>
-              <hr class="my-4" />
-              <div class="row mb-4">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <label for="adminPass">New Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="adminPass"
-                      name="adminPass"
-                      required />
-                  </div>
-                  <div class="form-group">
-                    <label for="adminConfirmPass">Confirm Password</label>
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="adminConfirmPass"
-                      name="adminConfirmPass"
-                      required />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <p class="mb-2">Password requirements</p>
-                  <p class="small text-muted mb-2">
-                    To create a new password, you have to meet all of the
-                    following requirements:
-                  </p>
-                  <ul class="small text-muted pl-4 mb-0">
-                    <li>Minimum 8 character</li>
-                    <li>At least one special character</li>
-                    <li>At least one number</li>
-                    <li>Can’t be the same as a previous password</li>
-                  </ul>
-                </div>
-              </div>
-              <input
-                class="btn btn-lg btn-primary btn-block"
-                type="submit"
-                value="Add Admin" />
-            </form>
-            <p class="text-muted mt-5 mb-3 text-center">
-              ©
-              <script>
-                var CurrentYear = new Date().getFullYear();
-                document.write(CurrentYear);
-              </script>
-            </p>
           </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </div>
     <!-- .wrapper -->
     <%- include('partials/script'); -%> <% if(typeof message !== 'undefined'){
     %>

@@ -33,43 +33,12 @@
       </a>
     </div>
     <ul class="navbar-nav flex-fill w-100 mb-2">
-      <li class="nav-item dropdown">
-        <a
-          href="#dashboard"
-          data-toggle="collapse"
-          aria-expanded="false"
-          class="dropdown-toggle nav-link">
+      <li class="nav-item w-100">
+        <a class="nav-link" href="/admin/dashboard">
           <i class="fe fe-home fe-16"></i>
-          <span class="item-text ml-3">Dashboard</span
-          ><span class="sr-only">(current)</span>
+          <span class="item-text ml-3">Dashboard</span>
+          <!-- <span class="badge badge-pill badge-primary">New</span> -->
         </a>
-        <ul class="collapse list-unstyled w-100 pl-4" id="dashboard">
-          <li class="nav-item active">
-            <a class="nav-link pl-3" href="./index.html"
-              ><span class="item-text ml-1">Default</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="./dashboard-analytics.html"
-              ><span class="item-text ml-1">Analytics</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="./dashboard-sales.html"
-              ><span class="item-text ml-1">E-commerce</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="./dashboard-saas.html"
-              ><span class="item-text ml-1">Saas Dashboard</span></a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link pl-3" href="./dashboard-system.html"
-              ><span class="item-text ml-1">Systems</span></a
-            >
-          </li>
-        </ul>
       </li>
     </ul>
     <p class="text-muted nav-heading mt-4 mb-1">
@@ -129,20 +98,19 @@
         </ul>
       </li> -->
       <li class="nav-item w-100">
-        <a class="nav-link" href="/admin/all-admin">
-          <i class="fe fe-layers fe-16"></i>
-          <span class="item-text ml-3">Admins</span>
-          <!-- <span class="badge badge-pill badge-primary">New</span> -->
+        <a class="nav-link" href="/admin/register">
+          <i class="fe fe-user-plus fe-16"></i>
+          <span class="item-text ml-3">Add Admins</span>
         </a>
       </li>
       <li class="nav-item w-100">
-        <a class="nav-link" href="/admin/register">
-          <i class="fe fe-layers fe-16"></i>
-          <span class="item-text ml-3">Add Admins</span>
-          <!-- <span class="badge badge-pill badge-primary">New</span> -->
+        <a class="nav-link" href="/admin/all-admin">
+          <i class="fe fe-users fe-16"></i>
+          <span class="item-text ml-3">Admins</span>
         </a>
       </li>
-      <li class="nav-item dropdown">
+
+      <!-- <li class="nav-item dropdown">
         <a
           href="#forms"
           data-toggle="collapse"
@@ -242,9 +210,26 @@
             >
           </li>
         </ul>
-      </li>
+      </li> -->
     </ul>
     <p class="text-muted nav-heading mt-4 mb-1">
+      <span>Post</span>
+    </p>
+    <ul class="navbar-nav flex-fill w-100 mb-2">
+      <li class="nav-item w-100">
+        <a class="nav-link" href="/admin/add-post">
+          <i class="fe fe-file-plus fe-16"></i>
+          <span class="item-text ml-3">Add Post</span>
+        </a>
+      </li>
+      <li class="nav-item w-100">
+        <a class="nav-link" href="/admin/all-post">
+          <i class="fe fe-file fe-16"></i>
+          <span class="item-text ml-3">All Posts</span>
+        </a>
+      </li>
+    </ul>
+    <!-- <p class="text-muted nav-heading mt-4 mb-1">
       <span>Components</span>
     </p>
     <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -408,8 +393,8 @@
           </li>
         </ul>
       </li>
-    </ul>
-    <p class="text-muted nav-heading mt-4 mb-1">
+    </ul> -->
+    <!-- <p class="text-muted nav-heading mt-4 mb-1">
       <span>Apps</span>
     </p>
     <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -506,8 +491,8 @@
           >
         </ul>
       </li>
-    </ul>
-    <p class="text-muted nav-heading mt-4 mb-1">
+    </ul> -->
+    <!-- <p class="text-muted nav-heading mt-4 mb-1">
       <span>Extra</span>
     </p>
     <ul class="navbar-nav flex-fill w-100 mb-2">
@@ -607,7 +592,7 @@
           </li>
         </ul>
       </li>
-    </ul>
+    </ul> -->
     <!-- <p class="text-muted nav-heading mt-4 mb-1">
       <span>Documentation</span>
     </p>
@@ -618,15 +603,11 @@
           <span class="item-text ml-3">Getting Start</span>
         </a>
       </li>
-    </ul>
+    </ul>-->
     <div class="btn-box w-100 mt-4 mb-1">
-      <a
-        href="https://themeforest.net/item/tinydash-bootstrap-html-admin-dashboard-template/27511269"
-        target="_blank"
-        class="btn btn-primary btn-lg btn-block mb-2">
-        <i class="fe fe-shopping-cart fe-12 mx-2"></i
-        ><span class="small">Buy now</span>
+      <a href="/admin/logout" class="btn btn-danger btn-lg btn-block mb-2">
+        <i class="fe fe-log-out fe-16 mx-2"></i>Log Out
       </a>
-    </div> -->
+    </div>
   </nav>
 </aside>

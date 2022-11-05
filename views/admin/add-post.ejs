@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head'); -%>
+    <!-- Script element sourcing TinyMCE -->
+    <script
+      type="application/javascript"
+      src="/tinymce/tinymce.min.js"></script>
+    <!-- Script element sourcing the TinyMCE configuration -->
+    <script
+      type="application/javascript"
+      src="/admin/js/tinymce-config.js"></script>
+  </head>
+  <body class="vertical light">
+    <div class="wrapper">
+      <%- include('partials/navbar'); -%> <%- include('partials/aside'); -%>
+
+      <main role="main" class="main-content">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="row align-items-center">
+                <div class="col-12">
+                  <h2 class="page-title">Add a new Post</h2>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-12 my-4">
+                  <div class="card shadow">
+                    <div class="card-body">
+                      <form
+                        action=""
+                        method="post"
+                        enctype="multipart/form-data">
+                        <div class="form-group">
+                          <label for="postTitle">Title</label>
+
+                          <input
+                            type="text"
+                            name="postTitle"
+                            class="form-control"
+                            id="postTitle"
+                            required />
+                          <small class="form-text text-muted"
+                            >This title should be unique. If not all the
+                            following contents will removed when summit.</small
+                          >
+                        </div>
+                        <div class="form-group">
+                          <label for="postExcerpt">Excerpt</label>
+                          <input
+                            type="text"
+                            name="postExcerpt"
+                            class="form-control"
+                            id="postExcerpt" />
+                        </div>
+                        <div class="form-group mb-3">
+                          <label for="postFeaturedImage">Featured Image</label>
+                          <input
+                            type="file"
+                            id="postFeaturedImage"
+                            name="postFeaturedImage"
+                            accept="image/*"
+                            required
+                            class="form-control-file" />
+                        </div>
+                        <div class="form-group">
+                          <label for="postContent">Content</label>
+                          <textarea
+                            type="text"
+                            name="postContent"
+                            class="form-control"
+                            id="postContent"
+                            required></textarea>
+                        </div>
+                        <input
+                          class="btn btn-lg btn-primary btn-inline px-5 float-right"
+                          type="submit"
+                          value="Add Post" />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- main -->
+    </div>
+    <!-- .wrapper -->
+    <%- include('partials/script'); -%>
+  </body>
+</html>

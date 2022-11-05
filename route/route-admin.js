@@ -50,8 +50,14 @@ adminRouter.get("/logout", adminAuth.isLogin, adminController.logOut);
 // Other pages
 adminRouter.get("/dashboard", adminAuth.isLogin, adminController.dashboard);
 adminRouter.get("/all-admin", adminAuth.isLogin, adminController.allAdmin);
-adminRouter.get("/all-post", adminAuth.isLogin, adminController.allPost);
+adminRouter.get("/add-post", adminAuth.isLogin, adminController.addPost);
+adminRouter.post(
+  "/add-post",
+  fileUpload.single("postFeaturedImage"),
+  adminController.addPostSave
+);
 
+adminRouter.get("/all-post", adminAuth.isLogin, adminController.allPost);
 // error 404
 adminRouter.get("*", adminController.error404);
 

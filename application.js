@@ -3,6 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
 
@@ -21,6 +22,7 @@ const database = require("./config/db").mongoURI;
 const dbOption = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  // useCreateIndex: true,
 };
 mongoose
   .connect(database, dbOption)
@@ -34,6 +36,11 @@ mongoose
 
 // Middleware
 const isBlog = require("./middlewares/isBlog");
+
+app.use(
+  "/tinymce",
+  express.static(path.join(__dirname, "node_modules", "tinymce"))
+);
 
 // Routes
 app.use(isBlog);
