@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const slug = require("mongoose-slug-generator");
-// const domPurify = require("dompurify");
-// const { JSDOM } = require("jsdom");
-// const htmlPurify = domPurify(new JSDOM().window);
+const domPurify = require("dompurify");
+const { JSDOM } = require("jsdom");
+const htmlPurify = domPurify(new JSDOM().window);
 
-// const stripHtml = require("string-strip-html");
+const { stripHtml } = require("string-strip-html");
 
 mongoose.plugin(slug);
 const postSchema = mongoose.Schema({
@@ -28,9 +28,10 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  // snippet: {
-  //   type: String,
-  // },
+  snippet: {
+    type: String,
+    required: true,
+  },
   slug: {
     type: String,
     slug: "title",
@@ -39,13 +40,15 @@ const postSchema = mongoose.Schema({
   },
 });
 
-// postSchema.pre("validate", function (next) {
-//   if (this.content) {
-//     this.content = htmlPurify.sanitize(this.description);
-//     this.snippet = stripHtml(this.description.substring(0, 300)).result;
-//   }
-//   next();
-// });
+postSchema.pre("validate", function (next) {
+  if (this.content) {
+    this.content = htmlPurify.sanitize(this.content);
+    this.snippet = stripHtml(
+      this.content.substring(0, 300).replace(/[\n\r]/g, "")
+    ).result;
+  }
+  next();
+});
 
 postSchema.set("timestamps", true);
 module.exports = mongoose.model("post", postSchema);

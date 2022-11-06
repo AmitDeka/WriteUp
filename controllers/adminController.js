@@ -230,46 +230,38 @@ const addPost = async (req, res) => {
   res.render("admin/add-post", { title: "Add Post" });
 };
 const addPostSave = async (req, res) => {
-  const authorName = req.session.name;
   try {
-    console.log("1");
+    const authorName = req.session.name;
     const titlePost = req.body.postTitle;
     const excerptPost = req.body.postExcerpt;
     const featuredImage = req.file.filename;
     const contentPost = req.body.postContent;
     const authorPost = authorName;
 
-    console.log({
-      titlePost,
-      excerptPost,
-      featuredImage,
-      contentPost,
-      authorPost,
+    const postDetails = new postAdd({
+      title: titlePost,
+      featuredImage: featuredImage,
+      excerpt: excerptPost,
+      title: titlePost,
+      content: contentPost,
+      author: authorPost,
     });
-
-    // const titleFind = await postAdd.findOne({ title: titlePost });
-    // if (!titleFind) {
-    // const postDetails = new postAdd({
-    //   title: titlePost,
-    //   featuredImage: titlePost,
-    //   excerpt: titlePost,
-    //   title: titlePost,
-    //   content: titlePost,
-    //   author: authorPost,
-    // });
-    // const postData = await postDetails.save();
-    // if (postData) {
-    //   res.redirect("/admin/all-post");
-    // }
-    // slug:
-    // }
+    const postData = await postDetails.save();
+    if (postData) {
+      res.redirect("/admin/all-post");
+    }
   } catch (error) {
     console.log(error.message);
   }
 };
 
 const allPost = async (req, res) => {
-  res.render("admin/all-post", { title: "Posts" });
+  try {
+    const posts = await postAdd.find({});
+    res.render("admin/all-post", { title: "Posts", posts: posts });
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 const logOut = async (req, res) => {
