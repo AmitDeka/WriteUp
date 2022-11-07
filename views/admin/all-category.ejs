@@ -13,19 +13,78 @@
             <div class="col-12">
               <div class="row align-items-center">
                 <div class="col-md-6 col-12">
-                  <h2 class="page-title">Posts</h2>
-                  <p>All of the posts are listed here</p>
+                  <h2 class="page-title">Category</h2>
+                  <p>All of the Category are listed here</p>
                 </div>
                 <div class="col-md-6 col-12">
                   <a
                     class="btn btn-primary float-md-right"
-                    href="/admin/add-post"
-                    >Add Post</a
+                    href="#"
+                    data-toggle="modal"
+                    data-target="#categoryAddModal"
+                    >Add Category</a
                   >
+                </div>
+
+                <div
+                  class="modal fade"
+                  id="categoryAddModal"
+                  tabindex="-1"
+                  role="dialog"
+                  aria-labelledby="categoryAddModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <form method="post" enctype="multipart/form-data">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="categoryAddModalLabel">
+                            Add a New Category
+                          </h5>
+                          <button
+                            type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          <div class="form-group mb-3">
+                            <label for="catBanner"
+                              >Category Banner ( Recommended size 700X350 pixel
+                              )</label
+                            >
+                            <input
+                              type="file"
+                              id="catBanner"
+                              name="catBanner"
+                              accept="image/*"
+                              required
+                              class="form-control-file" />
+                          </div>
+                          <hr class="my-4" />
+                          <div class="form-group">
+                            <label for="catName">Category Name</label>
+                            <input
+                              type="text"
+                              name="catName"
+                              class="form-control"
+                              id="catName"
+                              required />
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <input
+                            type="submit"
+                            value="Add Category"
+                            class="btn mb-2 btn-primary" />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div class="row">
-                <!-- Bordered table -->
                 <div class="col-md-12 my-4">
                   <div class="card shadow">
                     <div class="card-body">
@@ -33,54 +92,41 @@
                         <thead>
                           <tr>
                             <th>Title</th>
-                            <th>Featured Image</th>
-                            <th>Content</th>
-                            <th>Excerpt</th>
-                            <th>Snippet</th>
-                            <th>Category</th>
-                            <th>Author</th>
+                            <th>Banner</th>
                             <th>Slug</th>
-                            <th>Created At</th>
                             <th>Action</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <% if(posts.length>0){ posts.forEach(posts=>{ %>
+                          <% if(catgs.length>0){ catgs.forEach(catgs=>{ %>
 
                           <tr>
-                            <td><%= posts.title %></td>
+                            <td><%= catgs.title %></td>
                             <td>
                               <img
-                                src="/uploads/<%= posts.featuredImage %>"
-                                alt="<%= posts.featuredImage %>"
+                                src="/uploads/<%= catgs.featuredImage %>"
+                                alt="<%= catgs.featuredImage %>"
                                 style="
                                   object-fit: contain;
-                                  height: 80px;
+                                  height: 100px;
                                   object-position: center;
                                 " />
                             </td>
-                            <td><%= posts.content %></td>
-                            <td><%= posts.excerpt %></td>
-                            <td><%= posts.snippet %></td>
-                            <td><%= posts.category %></td>
-                            <td><%= posts.author %></td>
-                            <td><%= posts.slug %></td>
-                            <td><%= posts.createdAt %></td>
+                            <td><%= catgs.slug %></td>
 
                             <td>
-                              <a
-                                class="btn deletePost"
-                                href="#"
-                                data-id="<%= posts._id %>">
+                              <button
+                                class="btn deleteCat"
+                                data-id="<%= catgs._id %>">
                                 <i class="fe fe-trash fe-16 text-danger"></i>
-                              </a>
+                              </button>
                             </td>
                           </tr>
 
                           <% })} else{%>
                           <tr>
-                            <td colspan="9" class="text-center">
-                              No Post Found
+                            <td colspan="4" class="text-center">
+                              No Category Found
                             </td>
                           </tr>
                           <%} %>
@@ -89,14 +135,9 @@
                     </div>
                   </div>
                 </div>
-                <!-- Bordered table -->
               </div>
-              <!-- end section -->
-              <!-- end section -->
             </div>
-            <!-- .col-12 -->
           </div>
-          <!-- .row -->
         </div>
         <!-- .container-fluid -->
         <div
@@ -285,19 +326,18 @@
           </div>
         </div>
       </main>
-      <!-- main -->
     </div>
-    <!-- .wrapper -->
+
     <%- include('partials/script'); -%>
 
     <script>
       $(document).ready(function () {
-        $(".deletePost").click(function () {
+        $(".deleteCat").click(function () {
           var postId = $(this).attr("data-id");
           var obj = $(this);
 
           $.ajax({
-            url: "/admin/delete-post",
+            url: "/admin/delete-cat",
             type: "POST",
             data: {
               id: postId,

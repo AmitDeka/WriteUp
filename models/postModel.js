@@ -8,6 +8,10 @@ const { stripHtml } = require("string-strip-html");
 
 mongoose.plugin(slug);
 const postSchema = mongoose.Schema({
+  category: {
+    type: String,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
@@ -30,7 +34,6 @@ const postSchema = mongoose.Schema({
   },
   snippet: {
     type: String,
-    required: true,
   },
   slug: {
     type: String,

@@ -1,6 +1,7 @@
 const websiteSetting = require("../models/websiteSettingsModel");
 const adminUser = require("../models/adminUserModel");
 const postAdd = require("../models/postModel");
+const catAdd = require("../models/categoryModel");
 // const pos
 const bcrypt = require("bcrypt");
 const hashSalt = 12;
@@ -226,8 +227,54 @@ const allAdmin = async (req, res) => {
   }
 };
 
+const allCat = async (req, res) => {
+  try {
+    const catgs = await catAdd.find({});
+    res.render("admin/all-category", { title: "Category", catgs: catgs });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+const addCatSave = async (req, res) => {
+  try {
+    const catName = req.body.catName;
+    const catBanner = req.file.filename;
+
+    const catDetails = new catAdd({
+      title: catName,
+      featuredImage: catBanner,
+    });
+    const catData = await catDetails.save();
+    if (catData) {
+      res.redirect("/admin/category");
+    }
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+const deleteCat = async (req, res) => {
+  try {
+    await catAdd.deleteOne({ _id: req.body.id });
+    res.status(200).send({
+      success: true,
+      message: "Category deleted successfully",
+    });
+  } catch (error) {
+    res.status(400).send({ success: false, message: error.message });
+  }
+};
+
+const allPost = async (req, res) => {
+  try {
+    const posts = await postAdd.find({});
+    res.render("admin/all-post", { title: "Posts", posts: posts });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 const addPost = async (req, res) => {
-  res.render("admin/add-post", { title: "Add Post" });
+  const catgs = await catAdd.find({});
+  res.render("admin/add-post", { title: "Add Post", catgs: catgs });
 };
 const addPostSave = async (req, res) => {
   try {
@@ -236,6 +283,7 @@ const addPostSave = async (req, res) => {
     const excerptPost = req.body.postExcerpt;
     const featuredImage = req.file.filename;
     const contentPost = req.body.postContent;
+    const categoryPost = req.body.postCategory;
     const authorPost = authorName;
 
     const postDetails = new postAdd({
@@ -244,6 +292,7 @@ const addPostSave = async (req, res) => {
       excerpt: excerptPost,
       title: titlePost,
       content: contentPost,
+      category: categoryPost,
       author: authorPost,
     });
     const postData = await postDetails.save();
@@ -254,13 +303,15 @@ const addPostSave = async (req, res) => {
     console.log(error.message);
   }
 };
-
-const allPost = async (req, res) => {
+const deletePost = async (req, res) => {
   try {
-    const posts = await postAdd.find({});
-    res.render("admin/all-post", { title: "Posts", posts: posts });
+    await postAdd.deleteOne({ _id: req.body.id });
+    res.status(200).send({
+      success: true,
+      message: "Post deleted successfully",
+    });
   } catch (error) {
-    console.log(error.message);
+    res.status(400).send({ success: false, message: error.message });
   }
 };
 
@@ -286,8 +337,12 @@ module.exports = {
   loginSave,
   dashboard,
   allAdmin,
+  allCat,
+  addCatSave,
+  deleteCat,
   addPost,
   addPostSave,
+  deletePost,
   allPost,
   logOut,
   error404,
