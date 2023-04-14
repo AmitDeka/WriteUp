@@ -1,0 +1,30 @@
+@keyframes lds-ripple {
+  0% {
+    height: 0;
+    left: 36px;
+    opacity: 0;
+    top: 36px;
+    width: 0;
+  }
+  4.9% {
+    height: 0;
+    left: 36px;
+    opacity: 0;
+    top: 36px;
+    width: 0;
+  }
+  5% {
+    height: 0;
+    left: 36px;
+    opacity: 1;
+    top: 36px;
+    width: 0;
+  }
+  100% {
+    height: 72px;
+    left: 0px;
+    opacity: 0;
+    top: 0px;
+    width: 72px;
+  }
+}

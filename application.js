@@ -34,6 +34,8 @@ mongoose
   })
   .catch((error) => console.log(error));
 
+app.use("/", require("./route/route-user"));
+
 // Middleware
 const isBlog = require("./middlewares/isBlog");
 
@@ -44,7 +46,8 @@ app.use(
 
 // Routes
 app.use(isBlog);
-app.get("/", (req, res) => {
-  res.render("index", { title: "Express" });
-});
+// app.get("/", (req, res) => {
+//   res.render("index", { title: "Express" });
+// });
+
 app.use("/admin", require("./route/route-admin"));

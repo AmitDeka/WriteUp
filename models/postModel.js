@@ -24,6 +24,10 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  isFeaturedPost: {
+    type: String,
+    required: true,
+  },
   author: {
     type: String,
     required: true,

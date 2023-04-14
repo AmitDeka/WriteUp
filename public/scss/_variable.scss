@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;600&family=IBM+Plex+Serif:ital,wght@0,300;0,400;0,600;1,400&display=swap");
+@import "mixins";
+
+$ff-IBM-Plex-Sans: "IBM Plex Sans", sans-serif;
+$ff-IBM-Plex-Serif: "IBM Plex Serif", serif;
+
+$primary-light: #f7fff7;
+$primary-2-light: #f8fff8;
+$secondary-light: #1a535c;
+$secondary-muted-light: #174b53;
+$tartially-light: #4ecdc4;
+$accent-light: #ff6b6b;
+$bg-border-light: #e8e8e8;
+
+$primary-dark: #191919;
+$primary-2-dark: #171717;
+$secondary-dark: #e8eeef;
+$secondary-muted-dark: #e8eeef;
+$tartially-dark: #60d2ca;
+$accent-dark: #ff7a7a;
+$bg-border-dark: #303030;
+
+$h1-fs: 2.488rem;
+$h2-fs: 2.074;
+$h3-fs: 1.728rem;
+$h4-fs: 1.44rem;
+$h5-fs: 1.2rem;
+$h6-fs: 1rem;
+$p-fs: 1rem;
+$small-fs: 0.833rem;
+$smaller-fs: 0.694rem;
+
+$h1-fs-lpt: 3.052rem;
+$h2-fs-lpt: 2.441rem;
+$h3-fs-lpt: 1.953rem;
+$h4-fs-lpt: 1.563rem;
+$h5-fs-lpt: 1.25rem;
+$h6-fs-lpt: 1rem;
+$p-fs-lpt: 1rem;
+$small-fs-lpt: 0.8rem;
+$smaller-fs-lpt: 0.64rem;
+
+:root {
+  --primary: #{$primary-light};
+  --primary-2: #{$primary-2-light};
+  --secondary: #{$secondary-light};
+  --secondary-muted: #{$secondary-muted-light};
+  --tartially: #{$tartially-light};
+  --accent: #{$accent-light};
+  --bg-border: #{$bg-border-light};
+
+  --h1-fs: #{$h1-fs};
+  --h2-fs: #{$h2-fs};
+  --h3-fs: #{$h3-fs};
+  --h4-fs: #{$h4-fs};
+  --h5-fs: #{$h5-fs};
+  --h6-fs: #{$h6-fs};
+  --p-fs: #{$p-fs};
+  --small-fs: #{$small-fs};
+  --smaller-fs: #{$smaller-fs};
+  @include breakpoint(md) {
+    --h1-fs: #{$h1-fs-lpt};
+    --h2-fs: #{$h2-fs-lpt};
+    --h3-fs: #{$h3-fs-lpt};
+    --h4-fs: #{$h4-fs-lpt};
+    --h5-fs: #{$h5-fs-lpt};
+    --h6-fs: #{$h6-fs-lpt};
+    --p-fs: #{$p-fs-lpt};
+    --small-fs: #{$small-fs-lpt};
+    --smaller-fs: #{$smaller-fs-lpt};
+  }
+}
+
+$header-height: 3.5rem;
+
+.container {
+  @include breakpoint(sm, max) {
+    max-width: 540px;
+  }
+}

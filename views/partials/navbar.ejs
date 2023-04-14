@@ -1,0 +1,16 @@
+<header>
+  <div class="container mx-auto">
+    <ul class="nav-items">
+      <li><a class="nav-link" href="/">Home</a></li>
+      <% catgs.forEach(catgs=>{ %>
+      <li>
+        <a class="nav-link" href="<%= catgs.slug %>"><%= catgs.title %></a>
+      </li>
+      <%})%>
+      <li>
+        <i class="ri-moon-line change-theme nav-link" id="theme-btn"></i>
+      </li>
+    </ul>
+  </div>
+</header>
+<script src="/js/dark-mode.js"></script>

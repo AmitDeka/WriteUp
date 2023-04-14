@@ -285,6 +285,7 @@ const addPostSave = async (req, res) => {
     const contentPost = req.body.postContent;
     const categoryPost = req.body.postCategory;
     const authorPost = authorName;
+    const featuredPost = req.body.postInFeaturedCat;
 
     const postDetails = new postAdd({
       title: titlePost,
@@ -294,6 +295,7 @@ const addPostSave = async (req, res) => {
       content: contentPost,
       category: categoryPost,
       author: authorPost,
+      isFeaturedPost: featuredPost,
     });
     const postData = await postDetails.save();
     if (postData) {

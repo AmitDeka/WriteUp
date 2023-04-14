@@ -1,12 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <!-- <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= title %></title>
+    <title></title> -->
+    <%- include('partials/head'); -%>
   </head>
+
   <body>
-    <h1><%= title %></h1>
+    <!-- loader starts  -->
+    <%- include('partials/loading.ejs'); -%>
+    <!-- loader ends  -->
+
+    <!-- bg starts  -->
+    <%- include('partials/bg.ejs'); -%>
+    <!-- bg ends  -->
+
+    <!-- navbar starts  -->
+    <%- include('partials/navbar.ejs'); -%>
+    <!-- navbar ends  -->
+
+    <!-- hero section starts  -->
+    <section class="section hero container mx-auto">
+      <div class="hero_wrapper">
+        <% webSetting.forEach(webSetting=>{ %>
+        <div
+          class="hero_wrapper_img spotlight"
+          data-title="false"
+          data-animation="fade"
+          data-control="close,fullscreen,zoom,download"
+          data-page="false"
+          data-autohide="false"
+          data-src="/uploads/<%= webSetting.websiteLogo %>">
+          <img src="/uploads/<%= webSetting.websiteLogo %>" alt="" />
+        </div>
+        <div class="hero_wrapper_text">
+          <h1><%= webSetting.websiteTitle %></h1>
+          <p><%= webSetting.websiteDescription %></p>
+        </div>
+        <%})%>
+      </div>
+    </section>
+    <!-- hero section ends  -->
+
+    <!-- blog section starts  -->
+    <section class="section-blog">
+      <ul class="home-blog-wrapper container mx-auto">
+        <% if (post.length>0) { post.forEach(post=>{ %>
+        <li class="home-blog">
+          <div
+            class="home-blog_image spotlight"
+            data-title="false"
+            data-animation="fade"
+            data-control="close,fullscreen,zoom,download"
+            data-page="false"
+            data-autohide="false"
+            data-src="/uploads/<%= post.featuredImage %>"
+            style="
+              background-image: url(/uploads/<%= post.featuredImage %>);
+            "></div>
+          <div class="home-blog_text">
+            <p><%= post.category %></p>
+            <h2><%= post.title %></h2>
+            <div class="home-blog_text_btn">
+              <a href="<%= post.slug %>"
+                >Read More <i class="ri-arrow-right-line"></i
+              ></a>
+            </div>
+          </div>
+        </li>
+        <%})} else{ %>
+        <h1>No Post Found</h1>
+        <% } %>
+      </ul>
+    </section>
+
+    <!-- blog section ends -->
+
+    <!-- footer starts  -->
+    <%- include('partials/footer.ejs'); -%>
+    <!-- footer ends  -->
+
+    <!-- script starts  -->
+    <%- include('partials/script.ejs'); -%>
+    <!-- script ends  -->
   </body>
 </html>

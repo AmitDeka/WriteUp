@@ -21,7 +21,9 @@ const fileStorage = multer.diskStorage({
     cb(null, path.join(__dirname, "../public/uploads"));
   },
   filename: function (req, file, cb) {
-    const fileName = Date.now() + "-" + file.originalname;
+    const findSpace = file.originalname;
+    const spaceReplace = findSpace.replace(/\s+/g, "_");
+    const fileName = Date.now() + "-" + spaceReplace;
     cb(null, fileName);
   },
 });
